@@ -12,17 +12,25 @@ const CharCard = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 20px;
+
+`
+const CardLayout = styled.div`
+
+  display: flex;
+  justify-content: space-evenly
 
 `
 
   const SWCard = props => {
     return (
+      <CardLayout>
       <CharCard>
          <Title name = {props.newProp.name}/>
          <Bio/>
       </CharCard>
+      </CardLayout>
     );
   };
 
