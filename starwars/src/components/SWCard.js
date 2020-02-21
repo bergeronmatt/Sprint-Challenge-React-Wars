@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import Title from "./Title";
 import Bio from './Bio';
 import styled from "styled-components";
+import axios from 'axios';
 
 const CharCard = styled.div `
 
@@ -24,11 +25,23 @@ const CardLayout = styled.div`
 `
 
   const SWCard = props => {
+
+    const[world, setWorld] = useState('')
+
+    useEffect(()=>{
+
+      axios.get(props.newProp.homeworld)
+        .then(response => {
+          setWorld(response.data.name)
+        })
+
+    }, [props.newProp.homeworld])
+
     return (
       <CardLayout>
       <CharCard>
          <Title name = {props.newProp.name}/>
-         <Bio/>
+         <Bio homeworld={world} birth_year={props.newProp.birth_year}/>
       </CharCard>
       </CardLayout>
     );
